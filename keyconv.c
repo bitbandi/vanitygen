@@ -98,8 +98,8 @@ main(int argc, char **argv)
 
 	if (generate) {
 		unsigned char *pend = (unsigned char *) pbuf;
-		addrtype = 0;
-		privtype = 128;
+		addrtype = 63;
+		privtype = 191;
 		EC_KEY_generate_key(pkey);
 		res = i2o_ECPublicKey(pkey, &pend);
 		fprintf(stderr, "Pubkey (hex): ");
@@ -182,9 +182,9 @@ main(int argc, char **argv)
 	}
 
 	switch (privtype) {
-	case 128: addrtype = 0; break;
+	case 191: addrtype = 63; break;
 	case 239: addrtype = 111; break;
-	default:  addrtype = 0; break;
+	default:  addrtype = 63; break;
 	}
 
 	if (verbose) {

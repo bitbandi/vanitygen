@@ -1390,8 +1390,12 @@ vg_prefix_context_add_patterns(vg_context_t *vcp,
 		const char *ats = "bitcoin", *bw = "\"1\"";
 		switch (vcpp->base.vc_addrtype) {
 		case 5:
-			ats = "bitcoin script";
+			ats = "spreadcoin script";
 			bw = "\"3\"";
+			break;
+		case 63:
+			ats = "spreadcoin";
+			bw = "\"S\"";
 			break;
 		case 111:
 			ats = "testnet";

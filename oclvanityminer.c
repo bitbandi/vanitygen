@@ -554,13 +554,13 @@ dump_work(avl_root_t *work)
 		     wip != NULL;
 		     wip = workitem_avl_next(wip)) {
 			printf("Pattern: \"%s\" Reward: %f "
-			       "Value: %f BTC/Gkey\n",
+			       "Value: %f SPR/Gkey\n",
 			       wip->pattern,
 			       wip->reward,
 			       wip->value);
 		}
 		if (pbatch->nitems > 1)
-			printf("Batch of %d, total value: %f BTC/Gkey\n",
+			printf("Batch of %d, total value: %f SPR/Gkey\n",
 			       pbatch->nitems, pbatch->total_value);
 	}
 }
@@ -639,7 +639,7 @@ server_context_submit_solution(server_context_t *ctxp,
 				    POINT_CONVERSION_UNCOMPRESSED,
 				    NULL);
 	snprintf(urlbuf, sizeof(urlbuf),
-		 "%s?key=%s%%3A%s&privateKey=%s&bitcoinAddress=%s",
+		 "%s?key=%s%%3A%s&privateKey=%s&spreadcoinAddress=%s",
 		 ctxp->submit,
 		 work->pattern,
 		 pubhex,
@@ -1024,7 +1024,7 @@ main(int argc, char **argv)
 			     wip = workitem_avl_next(wip)) {
 				fprintf(stderr,
 					"Searching for pattern: \"%s\" "
-					"Reward: %f Value: %f BTC/Gkey\n",
+					"Reward: %f Value: %f SPR/Gkey\n",
 					wip->pattern,
 					wip->reward,
 					wip->value);
@@ -1043,7 +1043,7 @@ main(int argc, char **argv)
 			}
 
 			fprintf(stderr, 
-				"\nTotal value for current work: %f BTC/Gkey\n", 
+				"\nTotal value for current work: %f SPR/Gkey\n", 
 				active_pkb_value);
 			res = vg_context_start_threads(vcp);
 			if (res)

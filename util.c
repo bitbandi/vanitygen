@@ -880,7 +880,7 @@ vg_decode_privkey_any(EC_KEY *pkey, int *addrtype, const char *input,
 	res = vg_pkcs8_decode_privkey(pkey, input, pass);
 	if (res > 0) {
 		/* Assume main network address */
-		*addrtype = 128;
+		*addrtype = 191;
 	}
 	return res;
 }

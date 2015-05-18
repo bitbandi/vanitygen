@@ -40,9 +40,9 @@ usage(const char *name)
 	fprintf(stderr,
 "oclVanitygen %s (" OPENSSL_VERSION_TEXT ")\n"
 "Usage: %s [-vqrik1NTS] [-d <device>] [-f <filename>|-] [<pattern>...]\n"
-"Generates a bitcoin receiving address matching <pattern>, and outputs the\n"
+"Generates a spreadcoin receiving address matching <pattern>, and outputs the\n"
 "address and associated private key.  The private key may be stored in a safe\n"
-"location or imported into a bitcoin client to spend any balance received on\n"
+"location or imported into a spreadcoin client to spend any balance received on\n"
 "the address.\n"
 "By default, <pattern> is interpreted as an exact prefix.\n"
 "By default, if no device is specified, and the system has exactly one OpenCL\n"
@@ -57,8 +57,7 @@ usage(const char *name)
 "-i            Case-insensitive prefix search\n"
 "-k            Keep pattern and continue search after finding a match\n"
 "-1            Stop after first match\n"
-"-N            Generate namecoin address\n"
-"-T            Generate bitcoin testnet address\n"
+"-T            Generate spreadcoin testnet address\n"
 "-X <version>  Generate address with the given version\n"
 "-e            Encrypt private keys, prompt for password\n"
 "-E <password> Encrypt private keys with <password> (UNSAFE)\n"
@@ -86,8 +85,8 @@ version, name);
 int
 main(int argc, char **argv)
 {
-	int addrtype = 0;
-	int privtype = 128;
+	int addrtype = 63;
+	int privtype = 191;
 	int regex = 0;
 	int caseinsensitive = 0;
 	int opt;
@@ -123,7 +122,7 @@ main(int argc, char **argv)
 	int i;
 
 	while ((opt = getopt(argc, argv,
-			     "vqik1NTX:eE:p:P:d:w:t:g:b:VSh?f:o:s:D:")) != -1) {
+			     "vqik1TX:eE:p:P:d:w:t:g:b:VSh?f:o:s:D:")) != -1) {
 		switch (opt) {
 		case 'v':
 			verbose = 2;
@@ -139,10 +138,6 @@ main(int argc, char **argv)
 			break;
 		case '1':
 			only_one = 1;
-			break;
-		case 'N':
-			addrtype = 52;
-			privtype = 180;
 			break;
 		case 'T':
 			addrtype = 111;
